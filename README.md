@@ -1,3 +1,3 @@
 # techniveille
 
-'gulp serve'
+`gulp serve`
