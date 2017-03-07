@@ -12,8 +12,6 @@ function loaded(data) {
       .attr("src", data[i].img)
       .attr("alt", data[i].title);
   }
-  console.log('ok', data);
-
 }
 
 //formattage data

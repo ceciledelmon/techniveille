@@ -1,5 +1,19 @@
 // bower:scss
 // endbower
+$purple:#8642ff;
+$purple-dark:#7000ff;
+$white:#ffffff;
+$baseFont:'Source Sans Pro', sans-serif;
+$titleFont:'bluu_nextbold', sans-serif;
+
+@font-face {
+    font-family: 'bluu_nextbold';
+    src: url('bluunext-bold.woff2') format('woff2'),
+         url('bluunext-bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 .browserupgrade {
   margin: 0.2em 0;
@@ -9,23 +23,31 @@
 }
 
 body {
-  background: #fafafa;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #333;
+  overflow-x: hidden;
+  font-family: $baseFont;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
+.main {
   h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+    font-size: 40px;
+    position: relative;
+    font-family: $titleFont;
+    color: $white;
+    z-index: 1;
+    &.underline span {
+      background: $purple-dark;
+      width: 100%;
+      height: 0.7em;
+      right: 0;
+      left: -2%;
+      top: 50%;
+      position: absolute;
+      z-index: -1;
+    }
   }
+}
+
+header {
+  height: 100vh;
+  background: $purple;
 }
