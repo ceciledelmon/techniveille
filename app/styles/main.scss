@@ -2,9 +2,10 @@
 // endbower
 $purple:#8642ff;
 $purple-dark:#7000ff;
+$turquoise:#00ffe4;
 $white:#ffffff;
-$baseFont:'Source Sans Pro', sans-serif;
-$titleFont:'bluu_nextbold', sans-serif;
+$baseFont:'Source Code Pro';
+$titleFont:'bluu_nextbold';
 
 @font-face {
     font-family: 'bluu_nextbold';
@@ -25,29 +26,118 @@ $titleFont:'bluu_nextbold', sans-serif;
 body {
   overflow-x: hidden;
   font-family: $baseFont;
+  box-sizing: border-box;
 }
 
 .main {
-  h1 {
+  h1, h2 {
     font-size: 40px;
     position: relative;
-    font-family: $titleFont;
+    font-family: $titleFont, sans-serif;
     color: $white;
     z-index: 1;
-    &.underline span {
-      background: $purple-dark;
-      width: 100%;
-      height: 0.7em;
-      right: 0;
-      left: -2%;
-      top: 50%;
-      position: absolute;
-      z-index: -1;
+    display: inline-flex;
+    padding-top: 24px;
+  }
+  .underline span {
+    background: $purple-dark;
+    width: 100%;
+    height: 0.7em;
+    right: 0;
+    left: -2%;
+    top: 70%;
+    position: absolute;
+    z-index: -1;
+  }
+  p {
+    font-family: $baseFont, monospace;
+    font-size: 0.8rem;
+    color: $purple;
+    &.white {
+      color: $white;
     }
   }
+
 }
 
 header {
   height: 100vh;
   background: $purple;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav{
+  width: 30%;
+  &::after{
+    content: '';
+    height: 100vh;
+    width: 2px;
+    left: 15%;
+    background: $white;
+    position: absolute;
+    top: 0;
+  }
+  .nav-icon {
+    background: $turquoise;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    position: relative;
+    img {
+      width: 20px;
+      position: absolute;
+      bottom: -7px;
+    }
+  }
+  .nav-label {
+    background: $purple-dark;
+    color: $white;
+    font-family: $titleFont;
+    font-size: 1.4rem;
+    line-height: 30px;
+    padding: 0 15px;
+  }
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    &:nth-of-type(2n){
+      padding-left: 160px;
+      .nav-icon {
+        img {
+          right: -5px;
+        }
+      }
+      .nav-label {
+        padding-left: 30px;
+      }
+    }
+    &:nth-of-type(2n+1){
+      padding-right: 137px;
+      .nav-icon {
+        img {
+          left: -5px;
+        }
+      }
+      .nav-label {
+        padding-right: 30px;
+      }
+    }
+  }
+}
+
+.header-content {
+  width: 70%;
+  .header-content-inner{
+    width: 60%;
+    margin: auto;
+    p {
+      padding-top: 50px;
+      line-height: 1.5em;
+    }
+  }
 }
