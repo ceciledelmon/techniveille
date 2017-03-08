@@ -5,7 +5,7 @@ let spacingY = 5;
 let accuracy = 1;
 
 let opts = {
-  image: 'http://brokensquare.com/Code/assets/face.png',
+  image: '../images/back.png',
   gravity: 800,
   friction: 0.99,
   bounce: 0.3,
@@ -28,7 +28,6 @@ document.getElementById('cloth').appendChild(canvas);
 ctx.strokeStyle = '#FFF';
 
 let mouse = {
-
   down: false,
   x: 0,
   y: 0,
@@ -52,17 +51,17 @@ canvas.height = renderer.height;
 
 function loadTexture() {
 
-  console.log('loading texture', opts.image);
+  console.log('loading texture');
 
   document.body.className = 'loading';
 
   let texture = new PIXI.Texture.fromImage(opts.image);
-  if ( !texture.requiresUpdate ) { texture.update(); }
+  texture.opacity = 0;
 
   texture.on('error', function(){ console.error('AGH!'); });
 
   texture.on('update',function(){
-  document.body.className = '';
+    document.body.className = '';
 
     console.log('texture loaded');
 
@@ -71,9 +70,10 @@ function loadTexture() {
     mesh = new PIXI.mesh.Plane( this, opts.pointsX, opts.pointsY);
     mesh.width = this.width;
     mesh.height = this.height;
-    
-    spacingX = mesh.width / (opts.pointsX-1) + 10 ;
-    spacingY = mesh.height / (opts.pointsY-1) +2;
+    mesh.blendMode = PIXI.BLEND_MODES.MULTIPLY;
+
+    spacingX = mesh.width / (opts.pointsX-1) ;
+    spacingY = mesh.height / (opts.pointsY-1) ;
 
     cloth = new Cloth(opts.pointsX-1, opts.pointsY-1, !opts.pinCorners);
 
@@ -241,7 +241,7 @@ class Cloth {
     this.points = []
 
     let startX = canvas.width / 3 - clothX * spacingX / 2;
-    let startY = canvas.height * 0.2;
+    let startY = canvas.height * 0.01;
 
     for (let y = 0; y <= clothY; y++) {
       for (let x = 0; x <= clothX; x++) {
@@ -283,6 +283,7 @@ class Cloth {
     });
 
     ctx.stroke()
+    ctx.strokeStyle="#6f30f9";
   }
 }
 
