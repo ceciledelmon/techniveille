@@ -16,7 +16,9 @@ function loaded(data) {
   console.log("data length", data.length);
   for (var i = 0; i < data.length; i++) {
     // Date Section part
-    var dateSection = d3.select("div.timeline-content")
+    var timelineItem = d3.select("div.timeline-content").append('div').attr('class', 'timelineItem');
+
+    var dateSection = timelineItem
       .append("div")
       .attr("class", "date");
     dateSection.append("img")
@@ -29,13 +31,13 @@ function loaded(data) {
       })
       .exit();
 
-    var contentSection = d3.select("div.timeline-content")
-      .append("section");
+    var contentSection = timelineItem
+      .append("section").attr('class', 'content');
     contentSection.append("h3").text(data[i].title).exit();
     contentSection.append("p").text(data[i].summary).exit();
     contentSection.append("a").attr("href", "#").text("TODO : icon see more").exit();
 
-    var opinionSection = d3.select("div.timeline-content")
+    var opinionSection = timelineItem
       .append("div")
       .attr("class", "opinion")
       .append("ul");
@@ -69,8 +71,9 @@ function loaded(data) {
       }
     });
 
-    var imageSection = d3.select("div.timeline-content")
+    var imageSection = timelineItem
       .append("div")
+      .attr('class', 'imageArticle')
       .append("img")
       .attr("src", data[i].img)
       .attr("alt", data[i].title);
