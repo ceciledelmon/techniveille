@@ -29,6 +29,23 @@ body {
   box-sizing: border-box;
 }
 
+.purple-back{
+  background: $purple;
+}
+
+.wrapper{
+  max-width: 1200px;
+  margin: auto;
+}
+
+header {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .main {
   h1, h2 {
     font-size: 40px;
@@ -60,15 +77,6 @@ body {
 
 }
 
-header {
-  height: 100vh;
-  background: $purple;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 nav{
   width: 30%;
   &::after{
@@ -82,14 +90,14 @@ nav{
   }
   .nav-icon {
     background: $turquoise;
-    width: 30px;
-    min-width: 30px;
+    width: 40px;
+    min-width: 40px;
     height: 30px;
     position: relative;
     img {
-      width: 20px;
+      width: 50px;
       position: absolute;
-      bottom: -7px;
+      bottom: -25px;
     }
   }
   .nav-label {
@@ -139,5 +147,17 @@ nav{
       padding-top: 50px;
       line-height: 1.5em;
     }
+  }
+}
+
+.sticky-sources {
+  position: fixed;
+  padding-top: 12px;
+  right: 0;
+  z-index: 90;
+  transform: rotate(-90deg);
+  a {
+      color: $turquoise;
+      text-decoration: none;
   }
 }
