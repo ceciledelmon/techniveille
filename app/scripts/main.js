@@ -1,7 +1,7 @@
-var TODOopinion = [
-  'Accessibilité',
-  'Price',
-  'Innovation'
+var opinionSubject = [
+  'accessibility',
+  'price',
+  'innovation'
 ];
 var jsonCircles = [ { "x_axis": 10, "y_axis": 10, "radius": 5, "color" : "#8642ff" }];
 
@@ -12,8 +12,16 @@ d3.csv('/scripts/data.csv')
     .row(row)
     .get(loaded);
 
+function sortByDateAscending(a, b) {
+  // Dates will be cast to numbers automagically:
+  return b.date - a.date;
+}
+
 function loaded(data) {
   console.log("data length", data.length);
+
+  data = data.sort(sortByDateAscending);
+
   for (var i = 0; i < data.length; i++) {
     // Date Section part
     var timelineItem = d3.select("div.timeline-content").append('div').attr('class', 'timelineItem');
@@ -27,7 +35,7 @@ function loaded(data) {
       .exit();
     dateSection.append("div")
       .html(function(d) {
-        return "<span>" + data[i].date + " </span>" + "<span>" + data[i].subtitle + "</span>";
+        return "<span>" + data[i].day + "." + data[i].mounth + "." + data[i].year + " </span>" + "<span>" + data[i].subtitle + "</span>";
       })
       .exit();
 
@@ -42,12 +50,23 @@ function loaded(data) {
       .attr("class", "opinion")
       .append("ul");
 
-    TODOopinion.forEach(function(opinionTypeLabel) {
+    opinionSubject.forEach(function(opinionTypeLabel) {
       var opinionType = opinionSection.append("li");
+      var opinionGrade = 2;
+      switch (opinionTypeLabel) {
+        case 'accessibility':
+          opinionGrade = data[i].accessibility;
+          break;
+        case 'price':
+          opinionGrade = data[i].price;
+          break;
+        case 'innovation':
+          opinionGrade = data[i].innovation;
+          break;
+      }
       opinionType.append('h4').text(opinionTypeLabel).exit();
       var notation = opinionType.append('ul');
-      for (var j = 0; j < 5; j++) {
-        console.log(j);
+      for (var j = 1; j < 6; j++) {
         var circle = notation.append("li")
           .append("svg")
           .attr("width", 20)
@@ -57,8 +76,7 @@ function loaded(data) {
           .attr("cx", function (d) { return d.x_axis; })
           .attr("cy", function (d) { return d.y_axis; })
           .attr("r", function (d) { return d.radius; })
-        if (j < 2) {
-          // @TODO : change var with dynamic
+        if (j < opinionGrade) {
           circle
             .data(jsonCircles)
             .style("fill", function(d) { return d.color; })
@@ -85,9 +103,15 @@ function row(d) {
     return {
         title: d.title,
         subtitle: d.subtitle,
-        date: d.date,
+        date: new Date(d.year, d.month, d.day),
+        day: d.day,
+        mounth: d.month,
+        year: d.year,
         summary: d.summary,
         img: d.img,
         link: d.link,
+        accessibility: d.accessibility,
+        price:d.price,
+        innovation:d.innovation,
     };
 }
