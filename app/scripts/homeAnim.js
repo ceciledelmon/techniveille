@@ -5,7 +5,7 @@ let spacingY = 5;
 let accuracy = 1;
 
 let opts = {
-  image: '../images/back.png',
+  image: './images/back.png',
   gravity: 800,
   friction: 0.99,
   bounce: 0.3,
@@ -278,7 +278,7 @@ class Cloth {
     });
 
     ctx.stroke()
-    ctx.strokeStyle="#6f30f9";
+    ctx.strokeStyle='#00ffe4';
   }
 }
 

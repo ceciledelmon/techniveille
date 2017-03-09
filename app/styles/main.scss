@@ -20,6 +20,11 @@ $titleFont: 'bluu_nextbold';
   padding: 0.2em 0;
 }
 
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   overflow-x: hidden;
   font-family: $baseFont;
@@ -186,10 +191,10 @@ header {
 
     &::after {
       content: '';
-      height: 70vh;
+      height: 100vh;
       width: 2px;
       left: 15%;
-      top: -100px;;
+      top: -250px;
       background: $purple;
       position: absolute;
     }
@@ -197,7 +202,7 @@ header {
 
   .timelineItem {
     display: flex;
-    margin-top: 100px;
+    margin-top: 25vh;
     height: 350px;
     position: relative;
     .date {
@@ -354,7 +359,10 @@ header {
       height: 300px;
       right: 15%;
       width: auto;
-
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      margin: auto;
       img {
         height: 100%;
         filter: grayscale(100%);
@@ -394,18 +402,34 @@ header {
   }
 }
 
+.sourcesList{
+  position: fixed;
+  right: -25%;
+  top: 0;
+  height: 100vh;
+  width: 25%;
+  min-width: 200px;
+  background: $purple-dark;
+  transition: right ease-in-out 1s;
+}
+.sourcesListBack {
+  position: fixed;
+  right: -25%;
+  top: 0;
+  height: 100vh;
+  width: 25%;
+  min-width: 200px;
+  background: $turquoise;
+  transition: right ease-in-out 0.5s;
+}
 
+.sourcesList-active{
+  right: 0;
+}
 
-
-
-
-
-
-
-
-
-
-
+.sourcesListBack-active{
+  right: 0;
+}
 
 
 
