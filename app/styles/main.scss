@@ -88,6 +88,8 @@ nav{
     position: absolute;
     top: 0;
   }
+
+
   .nav-icon {
     background: $turquoise;
     width: 40px;
@@ -162,6 +164,187 @@ nav{
   }
 }
 
+// ARTICLE STYLE
+
+.wrapper {
+  &::after{
+    content: '';
+    height: 100vh;
+    width: 2px;
+    left: 15%;
+    background: $purple;
+    position: absolute;
+  }
+}
+
+.timelineItem{
+
+  display: flex;
+  margin-top: 100px;
+  height: 350px;
+
+  .date {
+
+    margin-top: 30px;
+
+    left: calc(15% - 105px);
+    position: absolute;;
+
+     &::after{
+      content:'';
+      height: 20px;
+      width: 25px;
+      min-width: 25px;
+      position: absolute;
+      background-color: $turquoise;
+      bottom: -24px;
+      left: 24px;
+      z-index: -1;
+    }
+
+    div {
+
+      span {
+        &:nth-of-type(1){
+          background-color: $purple;
+          color: white;
+          font-family: $titleFont, monospace;
+          padding: 3px 15px 3px 15px;
+
+
+        }
+
+        &:nth-of-type(2){
+          background-color: $turquoise;
+          color: $purple;
+          font-family: $baseFont, monospace;
+          text-transform: uppercase;
+          padding: 3px 15px 3px 15px;
+          position: absolute;
+          margin-top: 10px;
+        }
+      }
+
+    }
+
+    img {
+      height: 40px;
+      width: 40px;
+      min-width: 40px;
+    }
+
+  }
+
+  // DATE
+
+  .content {
+
+    left: 15%;
+    margin-top: 60px;
+    position: absolute;
+    padding: 40px 20px 40px 40px;
+    border: solid 2px $purple;
+    background-color: white;
+    min-height: 100px;
+    width: 450px;
+    min-width: 450px;
+
+    &:before{
+      content: '...';
+      font-family: $titleFont, monospace;
+      letter-spacing: 4px;
+      font-size: 25px;
+      color: $purple-dark;
+      position: absolute;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 14px;
+      padding: 4px;
+      padding-left: 8px;
+      right:-30px;
+      top: 6px;
+      background-color: $turquoise;
+    }
+
+    h3{
+      font-family: $titleFont, monospace;
+      color: $purple-dark;
+      font-size: 30px;
+      margin-bottom: 10px;
+
+      &:before{
+        content: '';
+        position: absolute;
+        height: 6px;
+        width: 100px;
+        opacity: 0.5;
+        top: 55px;
+        background-color: $turquoise;
+      }
+    }
+
+    p {
+      font-family: $baseFont, monospace;
+      font-size: 18px;
+      color: $purple;
+    }
+
+  }
+
+
+  .opinion{
+
+    background-color: white;
+    border: solid 2px $turquoise;
+    height: 100px;
+    min-height: 100px;
+    padding: 40px  80px 40px 20px ;
+    margin-top: 60px;
+    z-index: -1;
+    left: 59.5%;
+    position: absolute;
+
+    ul {
+      list-style: none;
+      margin-bottom: 5px;
+
+      li{
+        font-family: $baseFont, monospace;
+        color: $purple;
+        ul{
+          margin-left: -4px;
+
+          li{
+            display: inline-block;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .imageArticle {
+
+    box-sizing: border-box;
+    width: 10px;
+    height: 10px;
+    z-index: -2;
+    left: 37%;
+    position: absolute;
+
+    img{
+      height: 300px;
+      box-sizing: border-box;
+      filter: grayscale(100%);
+      z-index: -1;
+    }
+
+  }
+
 #cloth{
   position: absolute;
   top: 0;
@@ -170,4 +353,5 @@ nav{
   canvas {
     position: absolute;
   }
+
 }
