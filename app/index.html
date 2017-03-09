@@ -32,11 +32,11 @@
                 <li>
                   <div class="nav-label">Home</div>
                   <div class="nav-icon">
-                    <img src="/images/icon-home.png" alt="home" />
+                    <img src="./images/icon-home.png" alt="home" />
                   </div>
                 </li>
                 <li>
-                  <div class="nav-icon"><img src="/images/icon-home.png" alt="home" /></div>
+                  <div class="nav-icon"><img src="./images/icon-home.png" alt="home" /></div>
                   <div class="nav-label">Analyse</div>
                 </li>
               </ul>
@@ -49,13 +49,16 @@
               </div>
             </div>
             <div class="sticky-sources">
-              <a href="#">Sources</a>
+              <a class="sourcesButton" href="#">Sources</a>
             </div>
+            <ul class="sourcesList">
+            </ul>
+            <div class="sourcesListBack"></div>
           </header>
         </div>
       </div>
       <div class="wrapper">
-        <div class="timeline-content">
+        <div id="js-content" class="timeline-content">
         </div>
         <div class="mustHave">
           <p>...</p>
@@ -66,6 +69,7 @@
     <!--[if IE]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -78,13 +82,14 @@
     </script>
 
     <!-- build:js scripts/vendor.js -->
+    <script src="scripts/pixi.min.js"></script>
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
 
-    <script src="scripts/pixi.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <!-- build:js scripts/main.js -->
+    <script src="scripts/animation.js"></script>
     <script src="scripts/homeAnim.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
