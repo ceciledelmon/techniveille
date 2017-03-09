@@ -99,23 +99,28 @@ function loaded(data) {
       .attr("alt", data[i].title);
 
     if (data[i].mustHave != "0") {
-      var mustHave = d3.select("div.mustHave");
+      //var mustHave = d3.select("div.mustHaveArticles");
       var title = "";
       var color = "blue";
+      var left = 1;
       switch (data[i].mustHave) {
         case "1":
           title += "trust-worthy";
+          var mustHave = d3.select("div.articlesLeft");
         break;
         case "2":
           title += "iconic";
           color = "purple";
+          var mustHave = d3.select("div.articlesRight");
         break;
         case "3":
           title += "fashionable";
+          var mustHave = d3.select("div.articlesLeft");
         break;
         case "4":
           title += "unexepcted";
           color = "purple";
+          var mustHave = d3.select("div.articlesRight");
         break;
       }
       var mustHaveCont = mustHave.append("div").attr("class", "mustHave-item-container "+color);
