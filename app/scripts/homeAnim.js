@@ -50,9 +50,6 @@ canvas.height = renderer.height;
 /*////////////////////////////////////////*/
 
 function loadTexture() {
-
-  console.log('loading texture');
-
   document.body.className = 'loading';
 
   let texture = new PIXI.Texture.fromImage(opts.image);
@@ -62,8 +59,6 @@ function loadTexture() {
 
   texture.on('update',function(){
     document.body.className = '';
-
-    console.log('texture loaded');
 
     if ( mesh ) { stage.removeChild(mesh); }
 
@@ -288,6 +283,7 @@ class Cloth {
 }
 
 function pointerMove(e) {
+  console.log('moving');
   let pointer = e.touches ? e.touches[0] : e;
   mouse.px = mouse.x || pointer.clientX
   mouse.py = mouse.y || pointer.clientY
@@ -296,24 +292,25 @@ function pointerMove(e) {
 }
 
 function pointerDown(e){
+  console.log('in');
   mouse.down = true
   mouse.button = 1
   pointerMove(e);
 }
 
 function pointerUp(e){
+  console.log('out');
   mouse.down = false;
   mouse.px = null;
   mouse.py = null;
-  console.log('pointer up');
 }
 
-document.body.addEventListener('mousedown', pointerDown);
-document.body.addEventListener('touchstart', pointerDown);
+document.getElementById('mouseListener').addEventListener('mouseover', pointerDown);
+document.getElementById('mouseListener').addEventListener('touchstart', pointerDown);
 
-document.body.addEventListener('mousemove',pointerMove);
-document.body.addEventListener('touchmove', pointerMove);
+document.getElementById('mouseListener').addEventListener('mousemove',pointerMove);
+document.getElementById('mouseListener').addEventListener('touchmove', pointerMove);
 
-document.body.addEventListener('mouseup', pointerUp);
-document.body.addEventListener('touchend', pointerUp);
-document.body.addEventListener('mouseleave', pointerUp);
+document.getElementById('mouseListener').addEventListener('mouseout', pointerUp);
+document.getElementById('mouseListener').addEventListener('touchend', pointerUp);
+document.getElementById('mouseListener').addEventListener('mouseleave', pointerUp);

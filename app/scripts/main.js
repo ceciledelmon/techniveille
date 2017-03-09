@@ -3,7 +3,7 @@ var opinionSubject = [
   'price',
   'innovation'
 ];
-var jsonCircles = [ { "x_axis": 10, "y_axis": 10, "radius": 5, "color" : "#8642ff" }];
+var jsonCircles = [ { "x_axis": 10, "y_axis": 10, "radius": 5, "color" : "#7000ff" }];
 
 /////////////
 //Parse csv file
@@ -26,10 +26,12 @@ function loaded(data) {
     // Date Section part
     var timelineItem = d3.select("div.timeline-content").append('div').attr('class', 'timelineItem');
 
+    var timeline = timelineItem.append('div').attr('class', 'timeline');
+
     var dateSection = timelineItem
       .append("div")
       .attr("class", "date");
-    dateSection.append("img")
+    dateSection.append("div").attr("class", "icon-cat-container").append("img")
       .attr("src", "../images/icon-shoe.png")
       .attr("alt", "categorie icon")
       .exit();
@@ -41,9 +43,9 @@ function loaded(data) {
 
     var contentSection = timelineItem
       .append("section").attr('class', 'content');
-    contentSection.append("h3").text(data[i].title).exit();
+    contentSection.append("h3").text(data[i].title).append("span").exit();
     contentSection.append("p").text(data[i].summary).exit();
-    contentSection.append("a").attr("href", "#").text("TODO : icon see more").exit();
+    contentSection.append("a").attr("class", "seeMore").attr("href", "#").text("...").exit();
 
     var opinionSection = timelineItem
       .append("div")
