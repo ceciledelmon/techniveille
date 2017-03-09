@@ -1,19 +1,16 @@
 // bower:scss
 // endbower
-$purple:#8642ff;
-$purple-dark:#7000ff;
-$turquoise:#00ffe4;
-$white:#ffffff;
-$baseFont:'Source Code Pro';
-$titleFont:'bluu_nextbold';
-
+$purple: #8642ff;
+$purple-dark: #7000ff;
+$turquoise: #00ffe4;
+$white: #ffffff;
+$baseFont: 'Source Code Pro';
+$titleFont: 'bluu_nextbold';
 @font-face {
-    font-family: 'bluu_nextbold';
-    src: url('bluunext-bold.woff2') format('woff2'),
-         url('bluunext-bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: 'bluu_nextbold';
+  src: url('bluunext-bold.woff2') format('woff2'), url('bluunext-bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .browserupgrade {
@@ -29,11 +26,11 @@ body {
   box-sizing: border-box;
 }
 
-.purple-back{
+.purple-back {
   background: $purple;
 }
 
-.wrapper{
+.wrapper {
   max-width: 1200px;
   margin: auto;
 }
@@ -47,7 +44,8 @@ header {
 }
 
 .main {
-  h1, h2 {
+  h1,
+  h2 {
     font-size: 40px;
     position: relative;
     font-family: $titleFont, sans-serif;
@@ -56,6 +54,7 @@ header {
     display: inline-flex;
     padding-top: 24px;
   }
+
   .underline span {
     background: $purple-dark;
     width: 100%;
@@ -66,20 +65,22 @@ header {
     position: absolute;
     z-index: -1;
   }
+
   p {
     font-family: $baseFont, monospace;
     font-size: 0.8rem;
     color: $purple;
+
     &.white {
       color: $white;
     }
   }
-
 }
 
-nav{
+nav {
   width: 30%;
-  &::after{
+
+  &::after {
     content: '';
     height: 100vh;
     width: 2px;
@@ -89,19 +90,20 @@ nav{
     top: 0;
   }
 
-
   .nav-icon {
     background: $turquoise;
     width: 40px;
     min-width: 40px;
     height: 30px;
     position: relative;
+
     img {
       width: 50px;
       position: absolute;
       bottom: -25px;
     }
   }
+
   .nav-label {
     background: $purple-dark;
     color: $white;
@@ -110,29 +112,36 @@ nav{
     line-height: 30px;
     padding: 0 15px;
   }
+
   li {
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: center;
-    &:nth-of-type(2n){
+
+    &:nth-of-type(2n) {
       padding-left: 160px;
+
       .nav-icon {
         img {
           right: -5px;
         }
       }
+
       .nav-label {
         padding-left: 30px;
       }
     }
-    &:nth-of-type(2n+1){
+
+    &:nth-of-type(2n+1) {
       padding-right: 137px;
+
       .nav-icon {
         img {
           left: -5px;
         }
       }
+
       .nav-label {
         padding-right: 30px;
       }
@@ -142,9 +151,11 @@ nav{
 
 .header-content {
   width: 70%;
-  .header-content-inner{
+
+  .header-content-inner {
     width: 60%;
     margin: auto;
+
     p {
       padding-top: 50px;
       line-height: 1.5em;
@@ -158,16 +169,15 @@ nav{
   right: 0;
   z-index: 90;
   transform: rotate(-90deg);
+
   a {
-      color: $turquoise;
-      text-decoration: none;
+    color: $turquoise;
+    text-decoration: none;
   }
 }
-
 // ARTICLE STYLE
-
 .wrapper {
-  &::after{
+  &::after {
     content: '';
     height: 100vh;
     width: 2px;
@@ -177,21 +187,18 @@ nav{
   }
 }
 
-.timelineItem{
-
+.timelineItem {
   display: flex;
   margin-top: 100px;
   height: 350px;
 
   .date {
-
     margin-top: 30px;
-
     left: calc(15% - 105px);
-    position: absolute;;
+    position: absolute;
 
-     &::after{
-      content:'';
+    &::after {
+      content: '';
       height: 20px;
       width: 25px;
       min-width: 25px;
@@ -203,28 +210,24 @@ nav{
     }
 
     div {
-
       span {
-        &:nth-of-type(1){
+        &:nth-of-type(1) {
           background-color: $purple;
           color: white;
           font-family: $titleFont, monospace;
-          padding: 3px 15px 3px 15px;
-
-
+          padding: 3px 15px;
         }
 
-        &:nth-of-type(2){
+        &:nth-of-type(2) {
           background-color: $turquoise;
           color: $purple;
           font-family: $baseFont, monospace;
           text-transform: uppercase;
-          padding: 3px 15px 3px 15px;
+          padding: 3px 15px;
           position: absolute;
           margin-top: 10px;
         }
       }
-
     }
 
     img {
@@ -232,13 +235,9 @@ nav{
       width: 40px;
       min-width: 40px;
     }
-
   }
-
   // DATE
-
   .content {
-
     left: 15%;
     margin-top: 60px;
     position: absolute;
@@ -249,7 +248,7 @@ nav{
     width: 450px;
     min-width: 450px;
 
-    &:before{
+    &:before {
       content: '...';
       font-family: $titleFont, monospace;
       letter-spacing: 4px;
@@ -260,20 +259,19 @@ nav{
       display: inline-block;
       vertical-align: middle;
       line-height: 14px;
-      padding: 4px;
-      padding-left: 8px;
-      right:-30px;
+      padding: 4px 4px 4px 8px;
+      right: -30px;
       top: 6px;
       background-color: $turquoise;
     }
 
-    h3{
+    h3 {
       font-family: $titleFont, monospace;
       color: $purple-dark;
       font-size: 30px;
       margin-bottom: 10px;
 
-      &:before{
+      &:before {
         content: '';
         position: absolute;
         height: 6px;
@@ -289,17 +287,14 @@ nav{
       font-size: 18px;
       color: $purple;
     }
-
   }
 
-
-  .opinion{
-
+  .opinion {
     background-color: white;
     border: solid 2px $turquoise;
     height: 100px;
     min-height: 100px;
-    padding: 40px  80px 40px 20px ;
+    padding: 40px 80px 40px 20px;
     margin-top: 60px;
     z-index: -1;
     left: 59.5%;
@@ -309,26 +304,22 @@ nav{
       list-style: none;
       margin-bottom: 5px;
 
-      li{
+      li {
         font-family: $baseFont, monospace;
         color: $purple;
-        ul{
+
+        ul {
           margin-left: -4px;
 
-          li{
+          li {
             display: inline-block;
           }
-
         }
-
       }
-
     }
-
   }
 
   .imageArticle {
-
     box-sizing: border-box;
     width: 10px;
     height: 10px;
@@ -336,22 +327,22 @@ nav{
     left: 37%;
     position: absolute;
 
-    img{
+    img {
       height: 300px;
       box-sizing: border-box;
       filter: grayscale(100%);
       z-index: -1;
     }
-
   }
+}
 
-#cloth{
+#cloth {
   position: absolute;
   top: 0;
   width: 100%;
   height: 100vh;
+
   canvas {
     position: absolute;
   }
-
 }
