@@ -283,7 +283,6 @@ class Cloth {
 }
 
 function pointerMove(e) {
-  console.log('moving');
   let pointer = e.touches ? e.touches[0] : e;
   mouse.px = mouse.x || pointer.clientX
   mouse.py = mouse.y || pointer.clientY
@@ -292,14 +291,12 @@ function pointerMove(e) {
 }
 
 function pointerDown(e){
-  console.log('in');
   mouse.down = true
   mouse.button = 1
   pointerMove(e);
 }
 
 function pointerUp(e){
-  console.log('out');
   mouse.down = false;
   mouse.px = null;
   mouse.py = null;

@@ -374,3 +374,101 @@ header {
     position: absolute;
   }
 }
+
+.mustHave-item-container{
+  position: relative;
+  .mustHave-item-back, .overlay{
+    width: 100%;
+    height: 100%;
+  }
+  .image{
+    filter: saturate(0);
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+  .overlay{
+    position: absolute;
+    background: rgba(134, 66, 255, 0.5);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//romain
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//end

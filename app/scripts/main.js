@@ -37,7 +37,7 @@ function loaded(data) {
       .exit();
     dateSection.append("div")
       .html(function(d) {
-        return "<span>" + data[i].day + "." + data[i].mounth + "." + data[i].year + " </span>" + "<span>" + data[i].subtitle + "</span>";
+        return "<span>" + data[i].year + "." + data[i].mounth + "." + data[i].day + " </span>" + "<span>" + data[i].subtitle + "</span>";
       })
       .exit();
 
@@ -97,6 +97,44 @@ function loaded(data) {
       .append("img")
       .attr("src", data[i].img)
       .attr("alt", data[i].title);
+
+    if (data[i].mustHave != "0") {
+      var mustHave = d3.select("div.mustHave");
+      var title = "";
+      var color = "blue";
+      switch (data[i].mustHave) {
+        case "1":
+          title += "trust-worthy";
+        break;
+        case "2":
+          title += "iconic";
+          color = "purple";
+        break;
+        case "3":
+          title += "fashionable";
+        break;
+        case "4":
+          title += "unexepcted";
+          color = "purple";
+        break;
+      }
+      var mustHaveCont = mustHave.append("div").attr("class", "mustHave-item-container "+color);
+
+      var mustHaveBack = mustHaveCont.append("div").attr("class", "mustHave-item-back");
+      mustHaveBack.append("div").attr("class", "image").style("background-image", "url("+data[i].img+")").exit();
+      mustHaveBack.append("div").attr("class", "overlay");
+
+      var mustHaveTitle = mustHaveCont.append("div").attr("class", "mustHave-item").append("h3").attr("class", "mustHave-title");
+      mustHaveTitle.append("span").text("The most").exit();
+      mustHaveTitle.append("span").text(title);
+
+      var mustHaveHover = mustHaveCont.append("div").attr("class", "mustHave-item-hover");
+      var mustHaveHoverTitle = mustHaveHover.append("h3").attr("class", "mustHave-title");
+      mustHaveHoverTitle.append("span").text("The most").exit();
+      mustHaveHoverTitle.append("span").text(title);
+
+      mustHaveHover.append("p").text(data[i].summary);
+    }
   }
 }
 
@@ -115,5 +153,6 @@ function row(d) {
         accessibility: d.accessibility,
         price:d.price,
         innovation:d.innovation,
+        mustHave:d.mustHave,
     };
 }
