@@ -22,6 +22,15 @@ function sortByDateAscending(a, b) {
 function loaded(data) {
   data = data.sort(sortByDateAscending);
   for (var i = 0; i < data.length; i++) {
+
+    var sourcesList = d3.select(".sourcesList")
+      .append("li")
+      .attr("class", "sourcesList-item")
+      .append("a")
+      .attr("href", data[i].link)
+      .attr("target", "_blank")
+      .text(data[i].link);
+
     // Date Section part
     var timelineItem = d3.select('div.timeline-content').append('div').attr('class', 'timelineItem');
 
@@ -31,7 +40,7 @@ function loaded(data) {
       .append('div')
       .attr('class', 'date');
     dateSection.append('div').attr('class', 'icon-cat-container').append('img')
-      .attr('src', './images/icon-shoe.png')
+      .attr('src', './images/icon-'+data[i].subtitle+'.png')
       .attr('alt', 'categorie icon')
       .exit();
     dateSection.append('div')
@@ -44,6 +53,7 @@ function loaded(data) {
       .append('section').attr('class', 'content');
     contentSection.append('h3').text(data[i].title).append('span').exit();
     contentSection.append('p').text(data[i].summary).exit();
+    contentSection.append('a').attr('href', data[i].link).attr('target', '_blank').append("img").attr("class", "goToSite").attr("src", "./images/icon-arrow.png").exit();
     contentSection.append('a').attr('class', 'seeMore').attr('href', '#').text('...').exit();
 
     var opinionSection = timelineItem
@@ -54,12 +64,16 @@ function loaded(data) {
     opinionSubject.forEach(function(opinionTypeLabel) {
       var opinionType = opinionSection.append('li');
       var opinionGrade = 2;
+      var activePrice = true;
       switch (opinionTypeLabel) {
         case 'accessibility':
           opinionGrade = data[i].accessibility;
           break;
         case 'price':
           opinionGrade = data[i].price;
+          if (opinionGrade == 0) {
+            activePrice = false;
+          }
           break;
         case 'innovation':
           opinionGrade = data[i].innovation;
@@ -77,23 +91,30 @@ function loaded(data) {
           .attr('cx', function (d) { return d.x_axis; })
           .attr('cy', function (d) { return d.y_axis; })
           .attr('r', function (d) { return d.radius; })
-        if (j < opinionGrade) {
-          circle
-            .data(jsonCircles)
-            .style('fill', function(d) { return d.color; })
-        } else {
+        if (activePrice) {
+          if (j <= opinionGrade) {
+            circle
+              .data(jsonCircles)
+              .style('fill', function(d) { return d.color; })
+          } else {
+            circle
+                .data(jsonCircles)
+                .style('stroke', function(d) { return d.color; })
+                .style('fill', 'white')
+          }
+        }else {
           circle
               .data(jsonCircles)
-              .style('stroke', function(d) { return d.color; })
+              .style('stroke', function(d) { return "#4B4B4B"; })
               .style('fill', 'white')
         }
+
       }
     });
 
     var imageSection = timelineItem
       .append('div')
       .attr('class', 'imageArticle')
-
       .append("img")
       .attr("src", data[i].img)
       .attr("alt", data[i].title);
@@ -173,12 +194,21 @@ function animationsInit() {
     var sourcesButton = d3.select('a.sourcesButton');
     sourcesButton.on('click',  function(d) {
       d3.event.preventDefault();
-      sourcesButton.text();
       var list = d3.select('ul.sourcesList');
       var listBack = d3.select('div.sourcesListBack');
 
       list.classed('sourcesList-active', !list.classed('sourcesList-active'));
-      listBack.classed('sourcesListBack-active', !list.classed('sourcesListBack-active'));
+      if (list.classed('sourcesList-active')) {
+        list.style("transition-duration", "0.8s");
+      }else{
+        list.style("transition-duration", "0.5s");
+      }
+      listBack.classed('sourcesListBack-active', !listBack.classed('sourcesListBack-active'));
+      if (listBack.classed('sourcesListBack-active')) {
+        listBack.style("transition-duration", "0.5s");
+      }else{
+        listBack.style("transition-duration", "0.8s");
+      }
     });
 
     // setup scroll functionality
@@ -189,10 +219,8 @@ function animationsInit() {
     // setup event handling
     scroll.on('active', function (index) {
       d3.selectAll('.imageArticle')
-        .style('opacity', function (d, i) { return i === index ? 1 : 0; });
-    });
-    scroll.on('progress', function (index, progress) {
-      console.log(index);
+        .classed("imageArticle-animation-enter", function (d, i) {return i === index ? true : false; })
+        .classed("imageArticle-animation-out", function (d, i) { return i === index-1 ? true : false; });
     });
 
     var backHome = d3.select("li.backHome").on("click", function() {
@@ -201,24 +229,37 @@ function animationsInit() {
 
     var showAnalyse = d3.select("li.showAnalyse").on("click", function() {
       d3.select(".analyse-container").classed("analyse-container-active", true);
-      //d3.select(".main").attr("class", "noScroll");
+      document.body.scrollTop = 0;
+      d3.select(".main").classed("noScroll", true);
       d3.select(".analyse-container-back").classed("analyse-container-back-active", true);
     });
 
     var quitAnalyse = d3.select("span.exitAnalyse").on("click", function() {
       d3.select(".analyse-container").classed("analyse-container-active", false);
-      //d3.select(".main").attr("class", "noScroll");
+      d3.select(".main").classed("noScroll", false);
       d3.select(".analyse-container-back").classed("analyse-container-back-active", false);
     });
 
-    // var seeOpinion = d3.selectAll("a.seeMore").each(function(d, i) {
-    //   d3.select(this).on("")
-    // });
-
-    .on("click", function() {
-      d3.select(".analyse-container").classed("analyse-container-active", false);
-      //d3.select(".main").attr("class", "noScroll");
-      d3.select(".analyse-container-back").classed("analyse-container-back-active", false);
+    var seeOpinion = d3.selectAll("a.seeMore").each(function(d, i) {
+      var actual = d3.select(this);
+      actual.on("click", function(){
+        d3.event.preventDefault();
+        var closestMatch = undefined;
+        var matchArr = [];
+        actual.each(function(){
+            var elm = this;
+            while(typeof elm.parentNode.matches === "function" && !closestMatch){
+                elm = elm.parentNode;
+                if(elm.matches(".timelineItem")){
+                    closestMatch = elm;
+                    matchArr.push(closestMatch);
+                }
+            }
+            closestMatch = undefined;
+        });
+        var nearest = d3.select(matchArr[0]).select("div.opinion");
+        nearest.classed('opinion-active', !nearest.classed('opinion-active'));
+      })
     });
 
   }
