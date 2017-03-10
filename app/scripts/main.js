@@ -133,7 +133,7 @@ function loaded(data) {
       mustHaveTitle.append('span').text('The most').exit();
       mustHaveTitle.append('span').text(title);
 
-      var mustHaveHover = mustHaveCont.append('div').attr('class', 'mustHave-item-hover');
+      var mustHaveHover = mustHaveCont.append('div').attr('class', 'mustHave-item-hover hover-'+data[i].mustHave+'');
       var mustHaveHoverTitle = mustHaveHover.append('h3').attr('class', 'mustHave-title');
       mustHaveHoverTitle.append('span').text('The most').exit();
       mustHaveHoverTitle.append('span').text(title);
@@ -215,10 +215,10 @@ function animationsInit() {
     //   d3.select(this).on("")
     // });
 
-    .on("click", function() {
-      d3.select(".analyse-container").classed("analyse-container-active", false);
-      //d3.select(".main").attr("class", "noScroll");
-      d3.select(".analyse-container-back").classed("analyse-container-back-active", false);
-    });
+    // .on("click", function() {
+    //   d3.select(".analyse-container").classed("analyse-container-active", false);
+    //   //d3.select(".main").attr("class", "noScroll");
+    //   d3.select(".analyse-container-back").classed("analyse-container-back-active", false);
+    // });
 
   }
