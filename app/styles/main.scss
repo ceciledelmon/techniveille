@@ -515,7 +515,7 @@ header {
   }
 
   .hover-4{
-    height: 212px;
+    height: 400px;
   }
 
   &>p{
@@ -550,6 +550,9 @@ header {
 
   .timeline{
     z-index: 0;
+    &::after{
+      height: 69vh;
+    }
   }
   .mustHaveArticles{
     padding-left: 15%;
