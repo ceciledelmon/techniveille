@@ -1,0 +1,19 @@
+body{
+  -webkit-print-color-adjust:exact;
+}
+.analyse-container {
+  display: none;
+}
+
+.main .timelineItem {
+  margin-top: 90px;
+  margin-bottom: 80px;
+}
+
+.main .timelineItem .imageArticle {
+  position: absolute;
+}
+
+.main #mouseListener .wrapper  {
+  height: 10px;
+}
