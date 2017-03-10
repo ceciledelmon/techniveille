@@ -173,10 +173,52 @@ function animationsInit() {
     var sourcesButton = d3.select('a.sourcesButton');
     sourcesButton.on('click',  function(d) {
       d3.event.preventDefault();
-      sourcesButton.text()
+      sourcesButton.text();
       var list = d3.select('ul.sourcesList');
-      list.classed('sourcesList-active', !list.classed('sourcesList-active'));
       var listBack = d3.select('div.sourcesListBack');
-      list.classed('sourcesListBack-active', !list.classed('sourcesListBack-active'));
+
+      list.classed('sourcesList-active', !list.classed('sourcesList-active'));
+      listBack.classed('sourcesListBack-active', !list.classed('sourcesListBack-active'));
     });
+
+    // setup scroll functionality
+    var scroll = scroller()
+      .container(d3.select('.timeline-content'));
+    // pass in .step selection as the steps
+    scroll(d3.selectAll('.timelineItem'));
+    // setup event handling
+    scroll.on('active', function (index) {
+      d3.selectAll('.imageArticle')
+        .style('opacity', function (d, i) { return i === index ? 1 : 0; });
+    });
+    scroll.on('progress', function (index, progress) {
+      console.log(index);
+    });
+
+    var backHome = d3.select("li.backHome").on("click", function() {
+      document.body.scrollTop = 0;
+    });
+
+    var showAnalyse = d3.select("li.showAnalyse").on("click", function() {
+      d3.select(".analyse-container").classed("analyse-container-active", true);
+      //d3.select(".main").attr("class", "noScroll");
+      d3.select(".analyse-container-back").classed("analyse-container-back-active", true);
+    });
+
+    var quitAnalyse = d3.select("span.exitAnalyse").on("click", function() {
+      d3.select(".analyse-container").classed("analyse-container-active", false);
+      //d3.select(".main").attr("class", "noScroll");
+      d3.select(".analyse-container-back").classed("analyse-container-back-active", false);
+    });
+
+    // var seeOpinion = d3.selectAll("a.seeMore").each(function(d, i) {
+    //   d3.select(this).on("")
+    // });
+
+    .on("click", function() {
+      d3.select(".analyse-container").classed("analyse-container-active", false);
+      //d3.select(".main").attr("class", "noScroll");
+      d3.select(".analyse-container-back").classed("analyse-container-back-active", false);
+    });
+
   }
