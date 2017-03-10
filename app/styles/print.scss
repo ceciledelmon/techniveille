@@ -6,14 +6,30 @@ body{
 }
 
 .main .timelineItem {
-  margin-top: 90px;
+  margin-top: 90px !important;
   margin-bottom: 80px;
+  position: relative;
 }
 
 .main .timelineItem .imageArticle {
   position: absolute;
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 .main #mouseListener .wrapper  {
   height: 10px;
+}
+
+.sticky-sources{
+  display: none;
+}
+
+.analyse-container-back{
+  display: none;
+}
+
+.opinion {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
